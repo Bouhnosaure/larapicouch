@@ -1,7 +1,5 @@
 # LaraCouch
 
-[![Build Status](https://travis-ci.org/Bouhnosaure/larapicouch.svg)](https://travis-ci.org/Bouhnosaure/larapicouch)
-
 ### Development
 
 Projet en cours de développement, a ne pas se servir en production ou je ne sais quoi xD 
