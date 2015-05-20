@@ -1,6 +1,6 @@
 # LaraCouch
 
-[![Build Status](https://travis-ci.org/bouhnosaure/larapicouch.svg)](https://travis-ci.org/bouhnosaure/larapicouch)
+[![Build Status](https://travis-ci.org/Bouhnosaure/larapicouch.svg)](https://travis-ci.org/Bouhnosaure/larapicouch)
 
 ### Development
 
