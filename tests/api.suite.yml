@@ -1,0 +1,11 @@
+class_name: ApiTester
+modules:
+    enabled:
+        - ApiHelper
+        - PHPBrowser
+        - REST
+    config:
+        PHPBrowser:
+            url: 'http://nosql-laravel.dev/'
+        REST:
+            url: 'http://nosql-laravel.dev/'

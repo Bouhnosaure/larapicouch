@@ -1,0 +1,100 @@
+<?php namespace App\Services;
+
+
+use couchClient;
+use stdClass;
+
+class CouchDB
+{
+
+    private $client;
+
+    /**
+     *
+     */
+    public function __construct()
+    {
+        $this->client = new couchClient(getenv('COUCHDB_HOST'), getenv('COUCHDB_DATABASE'));
+
+    }
+
+    public function getAll()
+    {
+        return $this->client->getAllDocs();
+    }
+
+    public function get($id)
+    {
+        try {
+            return $this->objectToArray($this->client->getDoc($id));
+        } catch (Exception $e) {
+            return 'Not Found : ' . $e;
+        }
+    }
+
+    public function getAllAsArray()
+    {
+        $array = array();
+        $list = $this->getAll();
+
+        foreach ($list->rows as $doc) {
+            array_push($array, $this->get($doc->id));
+        }
+
+        return $array;
+    }
+
+    public function insert(array $data)
+    {
+        $obj = $this->arrayToObject($data);
+        try {
+            $response = $this->client->storeDoc($obj);
+            return $this->objectToArray($response);
+        } catch (Exception $e) {
+            return 'Error : ' . $e;
+        }
+    }
+
+    public function update($id, array $data)
+    {
+        $doc = $this->objectToArray($this->get($id));
+
+        $doc = array_replace($doc, $data);
+
+        return $this->insert($doc);
+
+    }
+
+    public function delete($id)
+    {
+        return $this->objectToArray(
+            $this->client->deleteDoc(
+                $this->arrayToObject(
+                    $this->get($id)
+                )
+            )
+        );
+    }
+
+    public function dropCreateDatabase()
+    {
+        $this->client->deleteDatabase();
+        $this->client->createDatabase();
+    }
+
+    public function commit()
+    {
+        return $response = $this->client->ensureFullCommit();
+    }
+
+    private function arrayToObject($array)
+    {
+        return $stdClass = json_decode(json_encode($array));
+    }
+
+    private function objectToArray($data)
+    {
+        return $array = json_decode(json_encode($data), true);
+    }
+
+}
