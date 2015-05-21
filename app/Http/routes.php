@@ -17,5 +17,5 @@ Route::get('clear', 'HomeController@clear');
 Route::get('dummy', 'HomeController@dummy');
 
 Route::group(['prefix' => 'api'], function () {
-    Route::resource('object', 'CouchDBController');
+    Route::resource(getenv('COUCHDB_OBJECT'), 'CouchDBController');
 });

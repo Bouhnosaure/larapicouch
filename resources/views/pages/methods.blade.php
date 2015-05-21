@@ -6,7 +6,7 @@
 
     <div class="row">
         <div class="col-lg-12 text-center">
-            <h1>CouchDB Methods on current ressource : {{ $object = 'object' }}</h1>
+            <h1>CouchDB Methods on current ressource : {{ $object }}</h1>
 
             <h3>Php Style</h3>
 
