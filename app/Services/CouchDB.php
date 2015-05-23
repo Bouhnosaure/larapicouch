@@ -1,6 +1,7 @@
 <?php namespace App\Services;
 
 
+use Carbon\Carbon;
 use couchClient;
 use stdClass;
 
@@ -46,6 +47,7 @@ class CouchDB
 
     public function insert(array $data)
     {
+        $data['datetime'] = Carbon::now()->toIso8601String();
         $obj = $this->arrayToObject($data);
         try {
             $response = $this->client->storeDoc($obj);
