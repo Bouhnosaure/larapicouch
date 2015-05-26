@@ -18,4 +18,8 @@ Route::get('warning-dummy', 'HomeController@dummy');
 
 Route::group(['prefix' => 'api'], function () {
     Route::resource(getenv('COUCHDB_OBJECT'), 'CouchDBController');
+
+    Route::get('average/brightness', 'CouchDBController@avgBright');
+    Route::get('average/temperature', 'CouchDBController@avgTemp');
+
 });

@@ -2,7 +2,9 @@
 
 
 use Carbon\Carbon;
+use Codeception\Lib\Connector\Guzzle;
 use couchClient;
+use Illuminate\Auth\Guard;
 use stdClass;
 
 class CouchDB
@@ -103,6 +105,20 @@ class CouchDB
     private function objectToArray($data)
     {
         return $array = json_decode(json_encode($data), true);
+    }
+
+    public function get_average_temperature()
+    {
+        $client = new Guzzle();
+        $response = $client->get('http://couchdb.ovh:5984/flowair/_design/mesures/_view/temperature_day');
+        return $response->json();
+    }
+
+    public function get_average_brightness()
+    {
+        $client = new Guzzle();
+        $response = $client->get('http://couchdb.ovh:5984/flowair/_design/mesures/_view/brightness_day');
+        return $response->json();
     }
 
 }

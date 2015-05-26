@@ -86,4 +86,22 @@ class CouchDBController extends Controller
         return $this->response->withItem($couchDB->delete($id), new ObjectTransformer());
     }
 
+    /**
+     * get average brightness by day
+     * @param CouchDB $couchDB
+     */
+    public function avgBright(CouchDB $couchDB)
+    {
+        return $couchDB->get_average_brightness();
+    }
+
+    /**
+     * get average temp by day
+     * @param CouchDB $couchDB
+     */
+    public function avgTemp(CouchDB $couchDB)
+    {
+        return $couchDB->get_average_temperature();
+    }
+
 }
