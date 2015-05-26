@@ -47,6 +47,12 @@ class CouchDB
 
     public function insert(array $data)
     {
+        $data['name'] = 'alan';
+        $data['type'] = 'petunia';
+        $data['center'] = 'bordeaux';
+        $data['group'] = '2';
+        $data['basename'] = 'flowaire';
+        $data['device_id'] = 'f1089f3ca2';
         $data['datetime'] = Carbon::now()->toIso8601String();
         $obj = $this->arrayToObject($data);
         try {
