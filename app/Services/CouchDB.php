@@ -108,14 +108,14 @@ class CouchDB
     public function get_average_temperature()
     {
         $client = new Gclient();
-        $response = $client->get('http://couchdb.ovh:5984/flowair/_design/mesures/_view/temperature_day');
+        $response = $client->get('http://couchdb.ovh:5984/flowair/_design/mesures/_view/temperature_day?group=true');
         return $response->json();
     }
 
     public function get_average_brightness()
     {
         $client = new Gclient();
-        $response = $client->get('http://couchdb.ovh:5984/flowair/_design/mesures/_view/brightness_day');
+        $response = $client->get('http://couchdb.ovh:5984/flowair/_design/mesures/_view/brightness_day?group=true');
         return $response->json();
     }
 
