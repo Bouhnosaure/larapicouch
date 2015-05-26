@@ -13,8 +13,8 @@
 
 Route::get('/', 'HomeController@index');
 Route::get('methods', 'HomeController@methods');
-Route::get('clear', 'HomeController@clear');
-Route::get('dummy', 'HomeController@dummy');
+Route::get('warning-clear', 'HomeController@clear');
+Route::get('warning-dummy', 'HomeController@dummy');
 
 Route::group(['prefix' => 'api'], function () {
     Route::resource(getenv('COUCHDB_OBJECT'), 'CouchDBController');
