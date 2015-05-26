@@ -16,6 +16,12 @@ Route::get('methods', 'HomeController@methods');
 Route::get('warning-clear', 'HomeController@clear');
 Route::get('warning-dummy', 'HomeController@dummy');
 
+Route::group(['prefix' => 'koubachi'], function () {
+    Route::get('plant/types','KoubachiController@plant_types');
+    Route::get('plant/type/photo','KoubachiController@plant_type_photo');
+    Route::get('plant/type/climate','KoubachiController@plant_type_climate');
+});
+
 Route::group(['prefix' => 'api'], function () {
     Route::resource(getenv('COUCHDB_OBJECT'), 'CouchDBController');
 

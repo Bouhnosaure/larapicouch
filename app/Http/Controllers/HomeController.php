@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Services\CouchDB;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -66,5 +67,6 @@ class HomeController extends Controller
         $couchDB->insert(['name' => 'johnoh', 'email' => 'johnoh@doe.fr']);
         return $couchDB->getAllAsArray();
     }
+
 
 }

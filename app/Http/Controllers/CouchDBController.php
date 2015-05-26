@@ -12,8 +12,8 @@ use Illuminate\Http\Request;
 class CouchDBController extends Controller
 {
     /**
-     * @var Response
-     */
+ * @var Response
+ */
     private $response;
 
     /**
