@@ -8,6 +8,7 @@ use App\Http\Transformers\ObjectTransformer;
 use App\Services\CouchDB;
 use EllipseSynergie\ApiResponse\Contracts\Response;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class CouchDBController extends Controller
 {
@@ -45,6 +46,7 @@ class CouchDBController extends Controller
      */
     public function store(Request $request, CouchDB $couchDB)
     {
+        Log::error('Insert');
         return $this->response->withItem($couchDB->insert($request->all()), new ObjectTransformer());
     }
 
