@@ -2,10 +2,8 @@
 
 
 use Carbon\Carbon;
-use Codeception\Lib\Connector\Guzzle;
 use couchClient;
-use Illuminate\Auth\Guard;
-use stdClass;
+use GuzzleHttp\Client as Gclient;
 
 class CouchDB
 {
@@ -109,14 +107,14 @@ class CouchDB
 
     public function get_average_temperature()
     {
-        $client = new Guzzle();
+        $client = new Gclient();
         $response = $client->get('http://couchdb.ovh:5984/flowair/_design/mesures/_view/temperature_day');
         return $response->json();
     }
 
     public function get_average_brightness()
     {
-        $client = new Guzzle();
+        $client = new Gclient();
         $response = $client->get('http://couchdb.ovh:5984/flowair/_design/mesures/_view/brightness_day');
         return $response->json();
     }
