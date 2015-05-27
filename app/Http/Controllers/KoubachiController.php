@@ -63,21 +63,17 @@ class KoubachiController extends Controller
     public function plant_by_id($id)
     {
 
-        $info = DB::table('plant_types')->where('id','=', $id)->first();
+        $info = DB::table('plant_types')->where('id', '=', $id)->first();
         $photo = DB::table('plant_type_photos')->where('plantType_id', '=', $id)->first();
 
         // RECUPERER INFO COUCHDB / CACHE
 
         $value = Cache::get('data-temp');
-        if ($value === null)
-        {
-            echo "Value wasn't cached.";
-        }else{
-            dd($value);
+        if ($value != null) {
+            $info['current'] = $value;
         }
-        // IF
 
-        return $this->response->withItem([$info,$photo], new PlantTransformer());
+        return $this->response->withItem([$info, $photo], new PlantTransformer());
     }
 
     public function plant_list()
@@ -95,10 +91,6 @@ class KoubachiController extends Controller
         return $this->response->withPaginator($infos, new PlantListTransformer());
 
     }
-
-
-
-
 
 
 }
