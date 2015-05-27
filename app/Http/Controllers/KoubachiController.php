@@ -69,8 +69,9 @@ class KoubachiController extends Controller
         // RECUPERER INFO COUCHDB / CACHE
         $data  = Cache::get('data-temp');
 
-        dd($data);
+        var_dump($data);
 
+        die();
         // IF
 
         return $this->response->withItem([$info,$photo], new PlantTransformer());
