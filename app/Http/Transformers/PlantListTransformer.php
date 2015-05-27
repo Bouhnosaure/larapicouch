@@ -8,6 +8,7 @@ class PlantListTransformer extends Transformer
     public function transform($obj)
     {
         $array = [
+            'id' => $obj->id,
             'commonName' => $obj->commonName,
             'type' => $obj->familyName,
             'photo' => $obj->photo
