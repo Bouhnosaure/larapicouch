@@ -16,7 +16,8 @@ class PlantTransformer extends Transformer
             'minTemp' => $this->extractTemp($obj[0]->hardiness),
             'enlightment' => $obj[0]->genericInstructionLight,
             'humidity' => $obj[0]->genericInstructionWater,
-            'photo' => $obj[1]->dataUrl
+            'photo' => $obj[1]->dataUrl,
+            'current' => $obj[2]
         ];
 
         return $array;

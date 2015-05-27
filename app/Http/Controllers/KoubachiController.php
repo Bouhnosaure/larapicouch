@@ -67,13 +67,13 @@ class KoubachiController extends Controller
         $photo = DB::table('plant_type_photos')->where('plantType_id', '=', $id)->first();
 
         // RECUPERER INFO COUCHDB / CACHE
-
+        $current = null;
         $value = Cache::get('data-temp');
         if ($value != null) {
-            $info->current = $value;
+            $current = $value;
         }
 
-        return $this->response->withItem([$info, $photo], new PlantTransformer());
+        return $this->response->withItem([$info, $photo, $current], new PlantTransformer());
     }
 
     public function plant_list()

@@ -56,10 +56,9 @@ class CouchDB
         $data['device_id'] = 'f1089f3ca2';
         $data['datetime'] = Carbon::now()->toIso8601String();
 
+        Cache::add('data-temp', $data, 1);
+
         $obj = $this->arrayToObject($data);
-
-        Cache::add('data-temp', $obj, 1);
-
         try {
             $response = $this->client->storeDoc($obj);
             return $this->objectToArray($response);
