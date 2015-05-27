@@ -22,7 +22,7 @@ class CouchDB
 
     public function cache_data($data){
         if(Cache::get('data-temp') == null){}
-        else{Cache::add('data-temp', json_encode($data) , Carbon::now()->addSeconds(10));}
+        else{Cache::add('data-temp', $data , Carbon::now()->addSeconds(10));}
     }
 
     public function getAll()

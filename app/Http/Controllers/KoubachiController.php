@@ -67,7 +67,7 @@ class KoubachiController extends Controller
         $photo = DB::table('plant_type_photos')->where('plantType_id', '=', $id)->first();
 
         // RECUPERER INFO COUCHDB / CACHE
-        $data  = json_decode(Cache::get('data-temp'));
+        $data  = Cache::get('data-temp');
 
         dd($data);
 
