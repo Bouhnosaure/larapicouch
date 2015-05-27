@@ -16,10 +16,14 @@ Route::get('methods', 'HomeController@methods');
 Route::get('warning-clear', 'HomeController@clear');
 Route::get('warning-dummy', 'HomeController@dummy');
 
-Route::group(['prefix' => 'koubachi'], function () {
-    Route::get('plant/types','KoubachiController@plant_types');
-    Route::get('plant/type/photo','KoubachiController@plant_type_photo');
-    Route::get('plant/type/climate','KoubachiController@plant_type_climate');
+Route::group(['prefix' => 'appdata'], function () {
+    Route::get('plant/photos','KoubachiController@plant_types_photos');
+    Route::get('plant/climates','KoubachiController@plant_types_climates');
+    Route::get('plant/scientificNames' , 'KoubachiController@plant_types_scientific_names');
+    Route::get('plant/familyNames', 'KoubachiController@plant_types_family_names');
+
+    Route::get('plant/list' , 'KoubachiController@plant_list');
+    Route::get('plant/{id}' , 'KoubachiController@plant_by_id');
 });
 
 Route::group(['prefix' => 'api'], function () {
