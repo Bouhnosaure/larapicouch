@@ -64,7 +64,9 @@ class KoubachiController extends Controller
         $info = DB::table('plant_types')->where('id','=', $id)->first();
         $photo = DB::table('plant_type_photos')->where('plantType_id', '=', $id)->first();
 
-        return $this->response->withItem([$info,$photo], new PlantTransformer());
+
+
+        $response = $this->response->withItem([$info,$photo], new PlantTransformer());
     }
 
     public function plant_list()
@@ -80,6 +82,12 @@ class KoubachiController extends Controller
 
 
         return $this->response->withPaginator($infos, new PlantListTransformer());
+
+    }
+
+    public function bind_plantware($ip){
+
+
 
     }
 
