@@ -20,11 +20,6 @@ class CouchDB
 
     }
 
-    public function cache_data($data){
-        if(Cache::get('data-temp') == null){}
-        else{Cache::add('data-temp', $data , Carbon::now()->addSeconds(10));}
-    }
-
     public function getAll()
     {
         return $this->client->getAllDocs();
@@ -53,7 +48,7 @@ class CouchDB
 
     public function insert(array $data)
     {
-        $data['name_plante'] = 'alan';
+        $data['name_plante'] = 'clumeau';
         $data['type_plante'] = 'petunia';
         $data['center'] = 'bordeaux';
         $data['group'] = '2';
@@ -61,7 +56,7 @@ class CouchDB
         $data['device_id'] = 'f1089f3ca2';
         $data['datetime'] = Carbon::now()->toIso8601String();
 
-        $this->cache_data($data);
+        Cache::add('data-temp', $data , Carbon::now()->addSeconds(10));
 
         $obj = $this->arrayToObject($data);
         try {
