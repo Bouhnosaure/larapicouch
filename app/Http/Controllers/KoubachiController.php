@@ -70,7 +70,7 @@ class KoubachiController extends Controller
 
         $value = Cache::get('data-temp');
         if ($value != null) {
-            $info['current'] = $value;
+            $info['current'] = json_decode(json_encode($value), true);
         }
 
         return $this->response->withItem([$info, $photo], new PlantTransformer());
