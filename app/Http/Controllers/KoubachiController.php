@@ -66,7 +66,7 @@ class KoubachiController extends Controller
 
 
 
-        $response = $this->response->withItem([$info,$photo], new PlantTransformer());
+        return $this->response->withItem([$info,$photo], new PlantTransformer());
     }
 
     public function plant_list()
