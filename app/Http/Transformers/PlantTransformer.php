@@ -8,13 +8,13 @@ class PlantTransformer extends Transformer
     public function transform($obj)
     {
         $array = [
-            'common name' => $obj[0]->commonName,
-            'scientific name' => $obj[0]->scientificName,
+            'commonName' => $obj[0]->commonName,
+            'scientificName' => $obj[0]->scientificName,
             'category' => $obj[0]->familyName,
-            'temperature moyenne' => $this->extractTemp($obj[0]->genericInstructionTemperature),
-            'temperature min' => $this->extractTemp($obj[0]->hardiness),
-            'ensoleillement' => $obj[0]->genericInstructionLight,
-            'humidite' => $obj[0]->genericInstructionWater,
+            'averageTemp' => $this->extractTemp($obj[0]->genericInstructionTemperature),
+            'minTemp' => $this->extractTemp($obj[0]->hardiness),
+            'enlightment' => $obj[0]->genericInstructionLight,
+            'humidity' => $obj[0]->genericInstructionWater,
             'photo' => $obj[1]->dataUrl
         ];
 

@@ -8,7 +8,7 @@ class FamilyNameTransformer extends Transformer
     public function transform($obj)
     {
         $array = [
-            'family name' => $obj->familyName
+            'familyName' => $obj->familyName
         ];
 
 

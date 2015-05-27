@@ -8,7 +8,7 @@ class ScientificNameTransformer extends Transformer
     public function transform($obj)
     {
         $array = [
-            'scientific name' => $obj->scientificName
+            'scientificName' => $obj->scientificName
         ];
 
 
