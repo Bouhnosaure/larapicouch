@@ -21,11 +21,8 @@ class CouchDB
     }
 
     public function cache_data($data){
-
-        if (!Cache::has('data-temp')) {
-            Cache::put('data-temp', json_encode($data) , Carbon::now()->addSeconds(10));
-        }
-
+        if(Cache::get('data-temp') == null){}
+        else{Cache::add('data-temp', json_encode($data) , Carbon::now()->addSeconds(10));}
     }
 
     public function getAll()
