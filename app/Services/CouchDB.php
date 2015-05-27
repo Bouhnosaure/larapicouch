@@ -119,4 +119,11 @@ class CouchDB
         return $response->json();
     }
 
+    public function get_average_moisture()
+    {
+        $client = new Gclient();
+        $response = $client->get('http://couchdb.ovh:5984/flowair/_design/mesures/_view/moisture_day?group=true');
+        return $response->json();
+    }
+
 }

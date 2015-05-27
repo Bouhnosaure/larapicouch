@@ -8,12 +8,13 @@ use App\Http\Transformers\ObjectTransformer;
 use App\Services\CouchDB;
 use EllipseSynergie\ApiResponse\Contracts\Response;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class CouchDBController extends Controller
 {
     /**
- * @var Response
- */
+     * @var Response
+     */
     private $response;
 
     /**
@@ -45,6 +46,7 @@ class CouchDBController extends Controller
      */
     public function store(Request $request, CouchDB $couchDB)
     {
+        Log::error('Insert');
         return $this->response->withItem($couchDB->insert($request->all()), new ObjectTransformer());
     }
 
@@ -89,6 +91,7 @@ class CouchDBController extends Controller
     /**
      * get average brightness by day
      * @param CouchDB $couchDB
+     * @return mixed
      */
     public function avgBright(CouchDB $couchDB)
     {
@@ -98,10 +101,21 @@ class CouchDBController extends Controller
     /**
      * get average temp by day
      * @param CouchDB $couchDB
+     * @return mixed
      */
     public function avgTemp(CouchDB $couchDB)
     {
         return $couchDB->get_average_temperature();
+    }
+
+    /**
+     * get avarage moisture by day
+     * @param CouchDB $couchDB
+     * @return mixed
+     */
+    public function avgMoisture(CouchDB $couchDB)
+    {
+        return $couchDB->get_average_moisture();
     }
 
 }
