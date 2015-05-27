@@ -3,13 +3,16 @@
 use App\Event;
 use League\Fractal\TransformerAbstract as Transformer;
 
-class ObjectToArrayTransformer extends Transformer
+class PlantListTransformer extends Transformer
 {
     public function transform($obj)
     {
         $array = [
-            'commonName' => $obj->commonName
+            'common name' => $obj->commonName,
+            'type' => $obj->familyName,
+            'photo' => $obj->photo
         ];
+
 
 
         return $array;
