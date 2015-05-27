@@ -4,6 +4,7 @@
 use Carbon\Carbon;
 use couchClient;
 use GuzzleHttp\Client as Gclient;
+use Illuminate\Support\Facades\Cache;
 
 class CouchDB
 {
@@ -16,6 +17,14 @@ class CouchDB
     public function __construct()
     {
         $this->client = new couchClient(getenv('COUCHDB_HOST'), getenv('COUCHDB_DATABASE'));
+
+    }
+
+    public function cache_data($data){
+
+        if (!Cache::has('data-temp')) {
+            Cache::put('data-temp', json_encode($data) , Carbon::now()->addSeconds(10));
+        }
 
     }
 
@@ -54,6 +63,9 @@ class CouchDB
         $data['basename'] = 'flowair';
         $data['device_id'] = 'f1089f3ca2';
         $data['datetime'] = Carbon::now()->toIso8601String();
+
+        $this->cache_data($data);
+
         $obj = $this->arrayToObject($data);
         try {
             $response = $this->client->storeDoc($obj);
