@@ -27,5 +27,6 @@ Route::group(['prefix' => 'api'], function () {
 
     Route::get('average/brightness', 'CouchDBController@avgBright');
     Route::get('average/temperature', 'CouchDBController@avgTemp');
+    Route::get('average/moisture', 'CouchDBController@avgMoisture');
 
 });
