@@ -9,6 +9,7 @@ use App\Http\Transformers\PlantTransformer;
 use App\Http\Transformers\FamilyNameTransformer;
 use App\Http\Transformers\ObjectTransformer;
 use App\Http\Transformers\ScientificNameTransformer;
+use App\Services\CouchDB;
 use EllipseSynergie\ApiResponse\Contracts\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -66,6 +67,7 @@ class KoubachiController extends Controller
 
 
 
+
         return $this->response->withItem([$info,$photo], new PlantTransformer());
     }
 
@@ -85,11 +87,7 @@ class KoubachiController extends Controller
 
     }
 
-    public function bind_plantware($ip){
 
-
-
-    }
 
 
 

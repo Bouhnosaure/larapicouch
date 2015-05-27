@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="SQLite -" uuid="f73ac418-dba2-4786-a422-2cd59e37b899">
+    <database-info product="SQLite" version="3.8.9" jdbc-version="2.1" driver-name="SQLiteJDBC" driver-version="native"/>
+    <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed"/>
+    <schema name="" catalog=""/>
+    <table name="android_metadata" schema="" catalog="" type="TABLE">
+      <column name="locale" sqlType="TEXT" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+    </table>
+    <table name="devices" schema="" catalog="" type="TABLE">
+      <column name="associatedSince" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="hardwareProductType" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="lastTransmission" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="macAddress" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="nextTransmission" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="ssid" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="recentTemperatureReadingValue" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="recentLightReadingTime" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="recentLightReadingValue" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="recentSoilmoistureReadingTime" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="recentSoilmoistureReadingValue" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="recentTemperatureReadingTime" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="numberOfRecentReadings" sqlType="INTEGER" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="numberOfReadings" sqlType="INTEGER" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="virtualBatteryLevel" sqlType="FLOAT" precision="2000000000" scale="10" nullable="true" jdbcType="6"/>
+      <column name="hardwareProductGeneration" sqlType="TEXT" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="hardwareProductName" sqlType="TEXT" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="recentIrlightReadingTime" sqlType="TEXT" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="recentIrlightReadingValue" sqlType="TEXT" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="recentSoiltemperatureReadingTime" sqlType="TEXT" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="recentSoiltemperatureReadingValue" sqlType="TEXT" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <primary-key columns="macaddress"/>
+    </table>
+    <table name="notification_day" schema="" catalog="" type="TABLE">
+      <column name="fri" sqlType="SMALLINT" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="wed" sqlType="SMALLINT" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="mon" sqlType="SMALLINT" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="sat" sqlType="SMALLINT" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="sun" sqlType="SMALLINT" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="thu" sqlType="SMALLINT" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="tue" sqlType="SMALLINT" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="user_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <primary-key columns="id"/>
+    </table>
+    <table name="plant_photos" schema="" catalog="" type="TABLE">
+      <column name="plant_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="createdAt" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="updatedAt" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="dataUpdatedAt" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="dataUrl" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <primary-key columns="id"/>
+    </table>
+    <table name="plant_type_icons" schema="" catalog="" type="TABLE">
+      <column name="createdAt" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="updatedAt" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="dataUpdatedAt" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="dataUrl" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <primary-key columns="id"/>
+    </table>
+    <table name="plant_type_infos" schema="" catalog="" type="TABLE">
+      <column name="commonName" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="scientificName" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="liveSince" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="otherCommonNames" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="otherScientificNames" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="plantTypeIconUrl" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <primary-key columns="id"/>
+    </table>
+    <table name="plant_type_photos" schema="" catalog="" type="TABLE">
+      <column name="plantType_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="createdAt" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="updatedAt" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="dataUpdatedAt" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="dataUrl" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <primary-key columns="id"/>
+    </table>
+    <table name="plant_types" schema="" catalog="" type="TABLE">
+      <column name="allelopathic" sqlType="SMALLINT" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="allergenic" sqlType="SMALLINT" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="careIntensity" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="climate" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="commonName" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="considersHemisphere" sqlType="SMALLINT" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="createdAt" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="cultivarName" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="description" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="dormancies" sqlType="BLOB" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="edible" sqlType="SMALLINT" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="edibleRecipes" sqlType="BLOB" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="edibleUsages" sqlType="BLOB" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="edibleUsedParts" sqlType="BLOB" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="familyName" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="fengShui" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="flowerAnthesisMonths" sqlType="BLOB" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="flowerColors" sqlType="BLOB" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="flowerComposition" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="flowerDescription" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="flowerFragrance" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="flowerGender" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="flowerInflorescence" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="flowerMulticolored" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="flowerPattern" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="vegetationCycle" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="varietyName" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="flowerShapes" sqlType="BLOB" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="flowerSymmetry" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="updatedAt" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="flowering" sqlType="SMALLINT" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="floweringOccurrenceIndoor" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="formName" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="fragrant" sqlType="SMALLINT" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="fruitAppearance" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="fruitColors" sqlType="BLOB" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="fruitMulticolored" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="fruitShape" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="fruitSizeMax" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="fruitSizeMin" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="fruitType" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="fruitsIndoor" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="fruitsOccurrence" sqlType="SMALLINT" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="generalUsages" sqlType="BLOB" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="genericAdviceAcidity" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="toxicityToxin" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="toxicitySymptoms" sqlType="BLOB" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="genericAdvicePositioning" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="genericAdvicePruning" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="genericAdvicePruningMonths" sqlType="BLOB" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="genericAdvicePruningParts" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="genericAdviceRepottingFrequency" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="genericAdviceRepottingMonths" sqlType="BLOB" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="genericAdviceRooms" sqlType="BLOB" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="genericAdviceRotation" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="genericInstructionFertilizer" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="genericInstructionLight" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="genericInstructionMist" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="genericInstructionTemperature" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="genericInstructionWater" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="genusName" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="toxicityParts" sqlType="BLOB" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="toxicityAnimals" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="giftRecommendationGender" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="giftRecommendationMotives" sqlType="BLOB" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="groupName" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="growingSpeed" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="growthForm" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="growthFormId" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="habitat" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="hardiness" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="harmonisingPlants" sqlType="BLOB" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="harvestCriteria" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="harvestMonths" sqlType="BLOB" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="homeopathy" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="hydroponicsPossible" sqlType="SMALLINT" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="toxicity" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="idealConditions" sqlType="BLOB" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="indoorSizeMax" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="indoorSizeMin" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="leafBlade" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="leafBladeId" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="leafColors" sqlType="BLOB" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="leafFragrance" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="leafMargin" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="leafMarginId" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="leafMetamorphosis" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="leafMulticolored" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="leafNode" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="leafNodeId" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="leafPosition" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="leafSizeMax" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="leafSizeMin" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="leafVeins" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="lifeCycle" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="liveSince" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="moreInformationUrls" sqlType="BLOB" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="nativeSizeMax" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="nativeSizeMin" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="negativelyAllelopathicAffectedPlants" sqlType="BLOB" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="negativelyAllelopathicAffectingPlants" sqlType="BLOB" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="origins" sqlType="BLOB" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="otherCommonNames" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="otherScientificNames" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="plantTypeIcon_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="positivelyAllelopathicAffectedPlants" sqlType="BLOB" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="positivelyAllelopathicAffectingPlants" sqlType="BLOB" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="proneToIssues" sqlType="SMALLINT" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="pruning" sqlType="SMALLINT" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="reproductionAtHomePossible" sqlType="SMALLINT" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="reproductionMethods" sqlType="BLOB" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="reproductionOptimalMonths" sqlType="BLOB" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="reproductionOptimalSoils" sqlType="BLOB" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="reproductionOptimalTemperatureMax" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="reproductionOptimalTemperatureMin" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="requiredSkillLevel" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="roomClimateAirFiltering" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="roomClimateHumidifying" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="roomClimateShading" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="roomClimateSoundDeadening" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="rootShape" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="scientificName" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="speciesName" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="subformName" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="subspeciesName" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="giftRecommendationAgeMin" sqlType="INTEGER" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="giftRecommendationAgeMax" sqlType="INTEGER" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="genericAdviceAcidityPhMin" sqlType="FLOAT" precision="2000000000" scale="10" nullable="true" jdbcType="6"/>
+      <column name="genericAdviceAcidityPhMax" sqlType="FLOAT" precision="2000000000" scale="10" nullable="true" jdbcType="6"/>
+      <column name="flowerTepalsNumber" sqlType="INTEGER" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="flowerSepalsNumber" sqlType="INTEGER" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="flowerPetalsNumber" sqlType="INTEGER" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <primary-key columns="id"/>
+    </table>
+    <table name="plants" schema="" catalog="" type="TABLE">
+      <column name="createdAt" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="device_id" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="wcdCalibrationStartedAt" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="hasSmartDeviceAssociated" sqlType="SMALLINT" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="wcdCalibrationEndedAt" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="lastFertilizerAt" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="lastMistAt" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="lastWaterAt" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="locationName" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="locationType" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="name" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="nextFertilizerAt" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="nextMistAt" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="nextWaterAt" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="note" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="plantPhotos" sqlType="BLOB" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="wcdCalibrationCheckedAt" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="vdmWaterPending" sqlType="SMALLINT" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="vdmWaterInstruction" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="vdmWaterAnalyzingUntil" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="vdmTemperaturePending" sqlType="SMALLINT" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="updatedAt" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="vdmTemperatureInstruction" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="vdmCalibrationCheckPending" sqlType="SMALLINT" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="vdmCalibrationInProgress" sqlType="SMALLINT" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="vdmCalibrationStartPending" sqlType="SMALLINT" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="vdmFertilizerInstruction" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="vdmTemperatureHint" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="vdmFertilizerPending" sqlType="SMALLINT" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="vdmLastCalibrationCheckAt" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="vdmLastWaterSource" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="vdmLightAdvice" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="vdmLightAnalyzingUntil" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="vdmLightHint" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="vdmLightInstruction" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="vdmTemperatureAnalyzingUntil" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="vdmLightPending" sqlType="SMALLINT" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="vdmMistInstruction" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="vdmTemperatureAdvice" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="vdmMistPending" sqlType="SMALLINT" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="vdmNextCalibrationCheckAt" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="vdmPrecalibrated" sqlType="SMALLINT" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="vdmMistLevel" sqlType="FLOAT" precision="2000000000" scale="10" nullable="true" jdbcType="6"/>
+      <column name="vdmLightLevel" sqlType="FLOAT" precision="2000000000" scale="10" nullable="true" jdbcType="6"/>
+      <column name="vdmFertilizerLevel" sqlType="FLOAT" precision="2000000000" scale="10" nullable="true" jdbcType="6"/>
+      <column name="userId" sqlType="INTEGER" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="vdmTemperatureLevel" sqlType="FLOAT" precision="2000000000" scale="10" nullable="true" jdbcType="6"/>
+      <column name="space" sqlType="INTEGER" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="size" sqlType="INTEGER" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="potShape" sqlType="INTEGER" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="vdmWaterLevel" sqlType="FLOAT" precision="2000000000" scale="10" nullable="true" jdbcType="6"/>
+      <column name="potColor" sqlType="INTEGER" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="plantTypeFamilyId" sqlType="INTEGER" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="displayPosition" sqlType="INTEGER" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <primary-key columns="id"/>
+    </table>
+    <table name="sqlite_sequence" schema="" catalog="" type="TABLE">
+      <column name="name" sqlType="" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="seq" sqlType="" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+    </table>
+    <table name="users" schema="" catalog="" type="TABLE">
+      <column name="alarmTaskLightOn" sqlType="SMALLINT" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="alarmTaskTemperatureOn" sqlType="SMALLINT" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="alarmTaskWaterOn" sqlType="SMALLINT" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="country" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="deviceUdid" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="email" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="firstName" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="timeZone" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="interim" sqlType="SMALLINT" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="iphoneUdid" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="lastName" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="singleAccessToken" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="locale" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="reminderOn" sqlType="SMALLINT" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="password" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="onSouthernHemisphere" sqlType="SMALLINT" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="notificationChannelEmailOn" sqlType="SMALLINT" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="notificationChannelPushOn" sqlType="SMALLINT" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="notificationDays_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <column name="notificationFrequency" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="notificationTaskWaterOn" sqlType="SMALLINT" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="notificationTaskTemperatureOn" sqlType="SMALLINT" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="notificationPreferredTime" sqlType="VARCHAR" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="notificationTaskFertilizerOn" sqlType="SMALLINT" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="notificationTaskLightOn" sqlType="SMALLINT" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="notificationTaskMistOn" sqlType="SMALLINT" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="notificationLevelWhat" sqlType="INTEGER" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="notificationLevelVolume" sqlType="INTEGER" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="maxSpacesCount" sqlType="INTEGER" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="maxPlantCount" sqlType="INTEGER" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="longitude" sqlType="FLOAT" precision="2000000000" scale="10" nullable="true" jdbcType="6"/>
+      <column name="latitude" sqlType="FLOAT" precision="2000000000" scale="10" nullable="true" jdbcType="6"/>
+      <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="trackingId" sqlType="TEXT" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <primary-key columns="id"/>
+    </table>
+  </data-source>
+</component>
