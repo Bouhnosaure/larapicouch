@@ -11,21 +11,31 @@
             <p class="lead">
                 <pre>
                     <code class="language-bash">
-
-                        +----------+--------------------------+--------------------+------------------------------------------------+
-                        | Method   | URI                      | Name               | Action                                         |
-                        +----------+--------------------------+--------------------+------------------------------------------------+
-                        | GET|HEAD | /                        |                    | App\Http\Controllers\HomeController@index      |
-                        | GET|HEAD | methods                  |                    | App\Http\Controllers\HomeController@methods    |
-                        | GET|HEAD | clear                    |                    | App\Http\Controllers\HomeController@clear      |
-                        | GET|HEAD | dummy                    |                    | App\Http\Controllers\HomeController@dummy      |
-                        | GET|HEAD | api/{{$object}}               | api.{{$object}}.index   | App\Http\Controllers\CouchDBController@index   |
-                        | POST     | api/{{$object}}               | api.{{$object}}.store   | App\Http\Controllers\CouchDBController@store   |
-                        | GET|HEAD | api/{{$object}}/{object}      | api.{{$object}}.show    | App\Http\Controllers\CouchDBController@show    |
-                        | PUT      | api/{{$object}}/{object}      | api.{{$object}}.update  | App\Http\Controllers\CouchDBController@update  |
-                        | PATCH    | api/{{$object}}/{object}      |                    | App\Http\Controllers\CouchDBController@update  |
-                        | DELETE   | api/{{$object}}/{object}      | api.{{$object}}.destroy | App\Http\Controllers\CouchDBController@destroy |
-                        +----------+--------------------------+--------------------+------------------------------------------------+
+                        +--------+----------+-------------------------------+---------------------+----------------------------------------------------------------------+------------+
+                        | Domain | Method   | URI                           | Name                | Action                                                               | Middleware |
+                        +--------+----------+-------------------------------+---------------------+----------------------------------------------------------------------+------------+
+                        |        | GET|HEAD | /                             |                     | App\Http\Controllers\HomeController@index                            |            |
+                        |        | GET|HEAD | methods                       |                     | App\Http\Controllers\HomeController@methods                          |            |
+                        |        | GET|HEAD | warning-clear                 |                     | App\Http\Controllers\HomeController@clear                            |            |
+                        |        | GET|HEAD | warning-dummy                 |                     | App\Http\Controllers\HomeController@dummy                            |            |
+                        |        | GET|HEAD | appdata/plant/photos          |                     | App\Http\Controllers\KoubachiController@plant_types_photos           |            |
+                        |        | GET|HEAD | appdata/plant/climates        |                     | App\Http\Controllers\KoubachiController@plant_types_climates         |            |
+                        |        | GET|HEAD | appdata/plant/scientificNames |                     | App\Http\Controllers\KoubachiController@plant_types_scientific_names |            |
+                        |        | GET|HEAD | appdata/plant/familyNames     |                     | App\Http\Controllers\KoubachiController@plant_types_family_names     |            |
+                        |        | GET|HEAD | appdata/plant/list            |                     | App\Http\Controllers\KoubachiController@plant_list                   |            |
+                        |        | GET|HEAD | appdata/plant/{id}            |                     | App\Http\Controllers\KoubachiController@plant_by_id                  |            |
+                        |        | GET|HEAD | api/mesures                   | api.mesures.index   | App\Http\Controllers\CouchDBController@index                         |            |
+                        |        | GET|HEAD | api/mesures/create            | api.mesures.create  | App\Http\Controllers\CouchDBController@create                        |            |
+                        |        | POST     | api/mesures                   | api.mesures.store   | App\Http\Controllers\CouchDBController@store                         |            |
+                        |        | GET|HEAD | api/mesures/{mesures}         | api.mesures.show    | App\Http\Controllers\CouchDBController@show                          |            |
+                        |        | GET|HEAD | api/mesures/{mesures}/edit    | api.mesures.edit    | App\Http\Controllers\CouchDBController@edit                          |            |
+                        |        | PUT      | api/mesures/{mesures}         | api.mesures.update  | App\Http\Controllers\CouchDBController@update                        |            |
+                        |        | PATCH    | api/mesures/{mesures}         |                     | App\Http\Controllers\CouchDBController@update                        |            |
+                        |        | DELETE   | api/mesures/{mesures}         | api.mesures.destroy | App\Http\Controllers\CouchDBController@destroy                       |            |
+                        |        | GET|HEAD | api/average/brightness        |                     | App\Http\Controllers\CouchDBController@avgBright                     |            |
+                        |        | GET|HEAD | api/average/temperature       |                     | App\Http\Controllers\CouchDBController@avgTemp                       |            |
+                        |        | GET|HEAD | api/average/moisture          |                     | App\Http\Controllers\CouchDBController@avgMoisture                   |            |
+                        +--------+----------+-------------------------------+---------------------+----------------------------------------------------------------------+------------+
                     </code>
                 </pre>
             </p>
