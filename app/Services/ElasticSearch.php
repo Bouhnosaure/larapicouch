@@ -21,6 +21,7 @@ use Elastica\Filter\BoolAnd as BoolAnd;
 use Elastica\Query\Filtered as Filtered;
 use Elastica\Search as Search;
 use Elastica\Aggregation\Terms as AggTerm;
+use Symfony\Component\Yaml\Yaml;
 
 class ElasticSearch
 {
@@ -114,6 +115,100 @@ class ElasticSearch
         $this->result = $this->result['buckets'];
 
         return $this;
+    }
+
+    public function getHistogramHours()
+    {
+        $query = '
+        {
+            query: {
+                "bool": {
+                    "must": {
+                       "range": {
+                          "datetime": {
+                             "from": "' . Carbon::now()->subDay()->subHours(8)->toIso8601String() . '",
+                             "to": "' . Carbon::now()->toIso8601String() . '"
+                          }
+                       }
+                    }
+                }
+            },
+            aggregations: {
+                day_interval: {
+                    date_histogram: {
+                        field: "datetime",
+                        interval: "hour",
+                        "format" : "yyyy-MM-dd HH:mm:ss"
+                    },
+                    aggregations: {
+                        "by_ip": {
+                            "terms": {
+                                "field": "ip"
+                            },
+                            aggregations: {
+                                temperature: {
+                                    avg: {
+                                        field: "temperature"
+                                    }
+                                },
+                                brightness: {
+                                    avg: {
+                                        field: "brightness"
+                                    }
+                                },
+                                moisture: {
+                                    avg: {
+                                        field: "moisture"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        ';
+        $response = $this->client->request($this->path_search, Request::GET, $query);
+        $data = $response->getData();
+
+        $return = array();
+
+        foreach ($data['aggregations']['day_interval']['buckets'] as $value) {
+            $datetime = $value['key_as_string'];
+            foreach ($value['by_ip']['buckets'] as $ip) {
+
+                if ($ip['key'] == null) {
+                    continue;
+                }
+
+                $return[$ip['key']][] = [
+                    'ip' => $ip['key'],
+                    'brightness' => $ip['brightness']['value'],
+                    'moisture' => $ip['moisture']['value'],
+                    'temperature' => $ip['temperature']['value'],
+                    'datetime' => $datetime
+                ];
+
+            }
+        }
+
+        return $return;
+    }
+
+    public function reindex()
+    {
+        $index = $this->client->getIndex('flowair');
+        $type = $index->getType('flowair');
+
+        $mapping = new TypeMapping();
+        $mapping->setType($type);
+
+        $mapping->setProperties(Yaml::parse(storage_path('mapping.yml')));
+        $response = $mapping->send()->isOk();
+
+        $type->getIndex()->refresh();
+
+        return 'OK';
     }
 
 

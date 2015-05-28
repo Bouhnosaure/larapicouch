@@ -13,14 +13,15 @@ group:
 ip:
     type: string
 moisture:
-    type: string
-name_plante:
-    type: string
+    type: float
 temperature:
+    type: float
+brightness:
+    type: integer
+name_plante:
     type: string
 type_plante:
     type: string
 datetime:
     type: date
-    format: "yyyy-MM-dd'T'HH:mm:ss-SSSS || yyyy-MM-dd'T'HH:mm:ss+SSSS || yyyy-MM-dd'T'HH:mm:ss.SSSS || yyyy-MM-dd'T'hh:mm:ssZ"
-    null_value: '0000-00-00T00:00:00-0000'
+    format: "dateOptionalTime"

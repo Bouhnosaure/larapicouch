@@ -28,6 +28,8 @@ Route::group(['prefix' => 'appdata'], function () {
     Route::get('device/list', 'KoubachiController@device_list');
 
     Route::resource('local', 'LocalDataController');
+
+    Route::get('histogram', 'KoubachiController@histogram');
 });
 
 Route::group(['prefix' => 'api'], function () {

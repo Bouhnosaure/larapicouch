@@ -112,6 +112,13 @@ class KoubachiController extends Controller
 
     }
 
+    public function histogram(ElasticSearch $elasticSearch)
+    {
+        $result = $elasticSearch->getHistogramHours();
+
+        return $this->response->withItem($result, new ObjectTransformer());
+    }
+
     //Check moisture reference attribute çf transformed object by comparying to CouchDB cache mesure
 
     public function checkHumidity($genericInstruction, $actualMoisture)
