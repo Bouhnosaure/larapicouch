@@ -56,7 +56,6 @@ class CouchDB
         $data['group'] = '2';
         $data['basename'] = 'flowair';
         $data['device_id'] = 'f1089f3ca2';
-        $data['ip'] = '10.133.128.26';
         $data['datetime'] = Carbon::now()->addHours(2)->toIso8601String();
 
         $obj = $this->arrayToObject($data);
