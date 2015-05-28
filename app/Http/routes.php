@@ -25,6 +25,8 @@ Route::group(['prefix' => 'appdata'], function () {
     Route::get('plant/list' , 'KoubachiController@plant_list');
     Route::get('plant/{id}' , 'KoubachiController@plant_by_id');
 
+    Route::get('device/list', 'KoubachiController@device_list');
+
     Route::resource('local', 'LocalDataController');
 });
 

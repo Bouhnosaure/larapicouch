@@ -2,6 +2,7 @@
 
 
 use Carbon\Carbon;
+use Elastica\Aggregation\Terms;
 use Elastica\Client;
 use Elastica\Document;
 use Elastica\Facet\Terms as FacetQuery;
@@ -12,6 +13,7 @@ use Elastica\Query\Match as Match;
 use Elastica\Filter\Term as FilterTerm;
 use Elastica\Filter\Terms as FilterTerms;
 use Elastica\Query\MatchAll as MatchAll;
+use Elastica\Request;
 use Elastica\Type\Mapping as TypeMapping;
 use Elastica\Filter\Bool as BooleanFilter;
 use Elastica\Filter\Range as RangeFilter;
@@ -25,8 +27,14 @@ class ElasticSearch
 
     private $result;
 
+    private $index;
+
+    private $type;
+
 
     private $client;
+
+    private $path_search;
 
     /**
      *
@@ -36,43 +44,31 @@ class ElasticSearch
         $this->result = "";
 
         if ($this->client == null) {
-
-            $this->client = new Client(array(
-
-                'host' => 'couchdb.ovh',
-                'port' => '9200'
-            ));
-
+            $this->client = new Client(array('host' => 'couchdb.ovh', 'port' => '9200'));
         }
 
+        $this->index = $this->client->getIndex('flowair');
+        $this->type = $this->index->getType('flowair');
+        $this->path_search = $path = $this->index->getName() . '/' . $this->type->getName() . '/_search';
 
     }
 
     public function getLast()
     {
-
-        $query = Query::create(new MatchAll());
-        $query->setSize(1);
-        $query->setFrom(0);
-        $query->setSort(array('datatime' => array('order' => 'desc', 'ignore_unmapped' => true)));
-        $search = new Search($this->client);
-
-        $this->result = $search->search($query);
+        $query = '{"from": 0,"size": 1,"sort": {"datetime": {"order": "desc"}}}';
+        $response = $this->client->request($this->path_search, Request::GET, $query);
+        $data = $response->getData();
+        $this->result = $data['hits']['hits'];
 
         return $this;
     }
 
     public function getAll()
     {
-
-
-        $query = Query::create(new MatchAll());
-        $query->setSize(100);
-        $query->setFrom(0);
-        $query->setSort(array('datatime' => array('order' => 'desc', 'ignore_unmapped' => true)));
-        $search = new Search($this->client);
-
-        $this->result = $search->search($query);
+        $query = '{"from": 0,"size": 50,"sort": {"datetime": {"order": "desc"}}}';
+        $response = $this->client->request($this->path_search, Request::GET, $query);
+        $data = $response->getData();
+        $this->result = $data['hits']['hits'];
 
         return $this;
     }
@@ -83,13 +79,42 @@ class ElasticSearch
         return $this->result->getResults();
     }
 
-    public function toArray()
+    public function toArray($field = "search")
     {
-        return $this->result->getResults()[0]->getHit()['_source'];
+        $array = array();
+
+        if ($field == "search") {
+            foreach ($this->result as $result) {
+                array_push($array, $result['_source']);
+            }
+        } elseif ($field == "agg") {
+            foreach ($this->result as $res) {
+                array_push($array, $res);
+            }
+        }
+
+        return $array;
     }
 
+    public function oneToArray()
+    {
+        return $this->result[0]['_source'];
+    }
 
+    public function getAllIp()
+    {
+        $agg = new Terms("terms");
+        $agg->setField("ip");
 
+        $query = Query::create(new MatchAll());
+        $query->addAggregation($agg);
+        $search = new Search($this->client);
+
+        $this->result = $search->search($query)->getAggregation("terms");
+        $this->result = $this->result['buckets'];
+
+        return $this;
+    }
 
 
 }
