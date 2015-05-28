@@ -19,6 +19,7 @@ use Elastica\Filter\BoolAnd as BoolAnd;
 use Elastica\Query\Filtered as Filtered;
 use Elastica\Search as Search;
 use Elastica\Aggregation\Terms as AggTerm;
+use Symfony\Component\Yaml\Yaml;
 
 class ElasticSearch
 {
@@ -77,6 +78,22 @@ class ElasticSearch
         return $this;
     }
 
+    public function reindex()
+    {
+        $index = $this->client->getIndex('flowair');
+        $type = $index->getType('flowair');
+
+        $mapping = new TypeMapping();
+        $mapping->setType($type);
+
+        $mapping->setProperties(Yaml::parse(storage_path('mapping.yml')));
+        $response = $mapping->send()->isOk();
+
+        $type->getIndex()->refresh();
+
+        return 'OK';
+    }
+
 
     public function getResults()
     {
@@ -87,9 +104,6 @@ class ElasticSearch
     {
         return $this->result->getResults()[0]->getHit()['_source'];
     }
-
-
-
 
 
 }
