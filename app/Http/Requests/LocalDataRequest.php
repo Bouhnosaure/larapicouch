@@ -22,8 +22,9 @@ class LocalDataRequest extends Request {
 	public function rules()
 	{
 		return [
-			'alias' => 'required',
-			'ip' => 'required'
+			'alias' => 'alpha_dash',
+			'ip' => 'alpha_dash',
+            'plant_id' => 'alpha_dash'
 		];
 	}
 
