@@ -77,11 +77,9 @@ class CouchDB
     {
 
         $data['_id'] = $data['ip'];
-        $data['_rev'] = '1-'.str_random(20);
+        //$data['_rev'] = '1-'.str_random(20);
 
         $obj = $this->arrayToObject($data);
-
-        $this->cache->deleteDoc($obj);
 
         $this->cache->storeDoc($obj);
     }
