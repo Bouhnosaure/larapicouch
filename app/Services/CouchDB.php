@@ -58,9 +58,6 @@ class CouchDB
         $data['device_id'] = 'f1089f3ca2';
         $data['datetime'] = Carbon::now()->toIso8601String();
 
-        //Cache::add('data-temp', $data, 1);
-        $this->cache_set($data);
-
         $obj = $this->arrayToObject($data);
         try {
 
@@ -73,30 +70,6 @@ class CouchDB
         }
     }
 
-    public function cache_set($data)
-    {
-
-        $rev = $this->cache->getDoc($data['ip']);
-
-        $data['_id'] = $data['ip'];
-        $data['_rev'] = $rev->_rev;
-
-        $obj = $this->arrayToObject($data);
-
-        $this->cache->storeDoc($obj);
-    }
-
-    public function cache_all()
-    {
-        $array = array();
-        $list = $this->cache->getAllDocs();
-
-        foreach ($list->rows as $doc) {
-            array_push($array, $this->cache->getDoc($doc->id));
-        }
-
-        return $array;
-    }
 
     public function update($id, array $data)
     {

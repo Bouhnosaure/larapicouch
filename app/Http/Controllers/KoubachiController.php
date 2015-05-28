@@ -68,9 +68,29 @@ class KoubachiController extends Controller
 
         $current = $couchDB->cache_all();
 
+        $notification = array();
+
+        // Checks for temperature, enlightment and moisture/humidity : Comparison between values from CouchDB and values required from plant Sqlite Database THEN Notif
 
 
-        return $this->response->withItem([$info, $photo, $current], new PlantTransformer());
+        $tempStatus = $this->checkTemperature($this->extractTemp($info->hardiness), $current[0]->temperature, $this->extractTemp($info->genericInstructionTemperature));
+
+        array_push($notification, array("temperature" => $tempStatus));
+
+        $enlightStatus = $this->checkEnlightment($info->genericInstructionLight, $current[0]->brightness);
+
+        array_push($notification, array("enlightment" => $enlightStatus));
+
+        $humiStatus = $this->checkHumidity($info->genericInstructionWater, $current[0]->moisture);
+
+        array_push($notification, array("moisture" => $humiStatus));
+
+
+        return $this->response->withItem([$info, $photo, $current, $notification], new PlantTransformer());
+    }
+
+    public function  getDevicesIp(){
+        
     }
 
     public function plant_list()
@@ -86,6 +106,104 @@ class KoubachiController extends Controller
 
 
         return $this->response->withPaginator($infos, new PlantListTransformer());
+
+    }
+
+
+    //Check moisture reference attribute çf transformed object by comparying to CouchDB cache mesure
+
+    public function checkHumidity($genericInstruction, $actualMoisture){
+
+
+        if(($genericInstruction == "Veillez à ce que le sol soit humide." && $actualMoisture < 30) || ($genericInstruction == "N’arroser que pendant les mois d’été." && $actualMoisture < 0) || ($genericInstruction == "Le sol ne devrait jamais complètement dessécher." && $actualMoisture < 15) || ($genericInstruction == "Le sol doit constamment être mouillé." && $actualMoisture < 85) || ($genericInstruction == "Le sol devrait être constamment très humide (presque mouillé)." && $actualMoisture < 70) || ($genericInstruction == "En été, le sol devrait être très humide (presque mouillé) pendant qu’en hiver, il devrait être simplement humide." && $actualMoisture < 35) || ($genericInstruction == "En été, le sol devrait être humide pendant qu’en hiver il ne devrait pas dessécher." && $actualMoisture < 30) || ($genericInstruction == "Veillez à ce que le sol soit humide." && $actualMoisture < 35) )
+        {
+
+            return "low";
+        }
+
+        else if(($genericInstruction == "Veillez à ce que le sol soit humide." && $actualMoisture > 50) || ($genericInstruction == "N’arroser que pendant les mois d’été." && $actualMoisture > 15) || ($genericInstruction == "Le sol ne devrait jamais complètement dessécher." && $actualMoisture > 30) || ($genericInstruction == "Le sol doit constamment être mouillé." && $actualMoisture > 120) || ($genericInstruction == "Le sol devrait être constamment très humide (presque mouillé)." && $actualMoisture > 90) || ($genericInstruction == "En été, le sol devrait être très humide (presque mouillé) pendant qu’en hiver, il devrait être simplement humide." && $actualMoisture > 50) || ($genericInstruction == "En été, le sol devrait être humide pendant qu’en hiver il ne devrait pas dessécher." && $actualMoisture > 50) || ($genericInstruction == "Veillez à ce que le sol soit humide." && $actualMoisture > 50) )
+        {
+
+            return "high";
+        }
+
+        else
+        {
+            return "ok";
+        }
+
+    }
+
+    //Check enlightment reference attribute çf transformed object by comparying to CouchDB cache mesure
+
+    public function checkEnlightment($genericInstruction, $actualEnlightment) {
+
+
+        if(($genericInstruction == "Préfère le soleil direct." && $actualEnlightment < 50000) || ($genericInstruction == "Préfère des endroits lumineux sans soleil direct." && $actualEnlightment < 25000 ) || ($genericInstruction == "Préfère des endroits mi-ombragés." && $actualEnlightment < 1000) || ($genericInstruction == "Préfère des endroits ombragés." && $actualEnlightment < 100))
+        {
+
+           return "low";
+        }
+
+        else if (($genericInstruction == "Préfère le soleil direct." && $actualEnlightment > 100000) || ($genericInstruction == "Préfère des endroits lumineux sans soleil direct." && $actualEnlightment > 30000 ) || ($genericInstruction == "Préfère des endroits mi-ombragés." && $actualEnlightment > 5000) || ($genericInstruction == "Préfère des endroits ombragés." && $actualEnlightment > 400))
+        {
+            return "high";
+        }
+
+        else
+        {
+            return "ok";
+        }
+
+
+    }
+
+    //Check temperature reference attribute çf transformed object by comparying to CouchDB cache mesure
+
+    public function checkTemperature($hardiness, $averageTemp, $actualTemp)
+    {
+
+        if($hardiness > $actualTemp)
+        {
+
+            return "low";
+        }
+
+        else if ($actualTemp >= $averageTemp + 15 )
+        {
+            return "high";
+        }
+
+        else
+        {
+            return "ok";
+        }
+    }
+
+    // Get true numeric information from talkative attributes.
+
+    public function extractTemp($attribute)
+    {
+
+        $matches = array();
+
+        preg_match('/\-?(\d+)\s?\°/', $attribute, $matches);
+
+
+        if (is_array($matches)) {
+            foreach ($matches as $key => $matche) {
+                trim($matche);
+                $tmp = explode('°', $matche);
+                $tmp = explode(' ', $tmp[0]);
+                $matches[$key] = $tmp[0];
+            }
+
+            array_pop($matches);
+            $matches = $matches[0];
+        }
+
+
+        return $matches;
 
     }
 
