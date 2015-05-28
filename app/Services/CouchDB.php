@@ -62,16 +62,22 @@ class CouchDB
 
         $obj = $this->arrayToObject($data);
         try {
+
             $response = $this->client->storeDoc($obj);
 
-            $obj_cache = $obj;
-            $obj_cache->_id = 'cached_val';
-            $this->cache->storeDoc($obj_cache);
+            $this->cache_set($obj);
 
             return $this->objectToArray($response);
+
         } catch (Exception $e) {
             return 'Error : ' . $e;
         }
+    }
+
+    public function cache_set($obj)
+    {
+        $obj->_id = $obj->ip;
+        $this->cache->storeDoc($obj);
     }
 
     public function update($id, array $data)
