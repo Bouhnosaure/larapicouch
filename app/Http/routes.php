@@ -39,3 +39,5 @@ Route::group(['prefix' => 'api'], function () {
 
     Route::get('now', 'CouchDBController@current');
 });
+
+Route::get('es/reindex', 'ElasticSearchController@reindex');
