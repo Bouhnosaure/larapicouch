@@ -59,11 +59,11 @@ class CouchDB
         $data['datetime'] = Carbon::now()->toIso8601String();
 
         //Cache::add('data-temp', $data, 1);
-        $this->update($data['ip'], $data);
 
         $obj = $this->arrayToObject($data);
         try {
 
+            $this->cache_set($obj);
 
             $response = $this->client->storeDoc($obj);
             return $this->objectToArray($response);
@@ -71,6 +71,13 @@ class CouchDB
         } catch (Exception $e) {
             return 'Error : ' . $e;
         }
+    }
+
+    public function cache_set($obj)
+    {
+        $obj->_id = $obj->ip;
+        $this->cache->deleteDoc($obj);
+        $this->cache->storeDoc($obj);
     }
 
     public function update($id, array $data)
