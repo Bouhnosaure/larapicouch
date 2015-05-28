@@ -76,8 +76,10 @@ class CouchDB
     public function cache_set($data)
     {
 
+        $rev = $this->cache->getDoc($data['ip']);
+
         $data['_id'] = $data['ip'];
-        //$data['_rev'] = '1-'.str_random(20);
+        $data['_rev'] = $rev->_rev;
 
         $obj = $this->arrayToObject($data);
 
