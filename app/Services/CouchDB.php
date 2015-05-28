@@ -10,6 +10,7 @@ class CouchDB
 {
 
     private $client;
+    private $cache;
 
     /**
      *
@@ -17,6 +18,7 @@ class CouchDB
     public function __construct()
     {
         $this->client = new couchClient(getenv('COUCHDB_HOST'), getenv('COUCHDB_DATABASE'));
+        $this->cache = new couchClient(getenv('COUCHDB_HOST'), 'cache');
 
     }
 
@@ -56,15 +58,32 @@ class CouchDB
         $data['device_id'] = 'f1089f3ca2';
         $data['datetime'] = Carbon::now()->toIso8601String();
 
-        Cache::add('data-temp', $data, 1);
+        //Cache::add('data-temp', $data, 1);
+        $this->cache_set($data);
 
         $obj = $this->arrayToObject($data);
         try {
+
             $response = $this->client->storeDoc($obj);
+
             return $this->objectToArray($response);
+
         } catch (Exception $e) {
             return 'Error : ' . $e;
         }
+    }
+
+    public function cache_set($data)
+    {
+
+        $data['_id'] = $data['ip'];
+        $data['_rev'] = str_random(30).rand(0,99);
+
+        $obj = $this->arrayToObject($data);
+
+        $this->cache->deleteDoc($obj);
+
+        $this->cache->storeDoc($obj);
     }
 
     public function update($id, array $data)
