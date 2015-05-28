@@ -80,6 +80,8 @@ class CouchDB
 
         $obj = $this->arrayToObject($data);
 
+        $this->cache->deleteDoc($obj);
+
         $this->cache->storeDoc($obj);
     }
 
