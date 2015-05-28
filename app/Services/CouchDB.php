@@ -92,7 +92,7 @@ class CouchDB
         $list = $this->cache->getAllDocs();
 
         foreach ($list->rows as $doc) {
-            array_push($array, $this->get($doc->id));
+            array_push($array, $this->cache->getDoc($doc->id));
         }
 
         return $array;
