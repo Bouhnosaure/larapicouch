@@ -10,6 +10,7 @@ class CouchDB
 {
 
     private $client;
+    private $cache;
 
     /**
      *
@@ -17,6 +18,7 @@ class CouchDB
     public function __construct()
     {
         $this->client = new couchClient(getenv('COUCHDB_HOST'), getenv('COUCHDB_DATABASE'));
+        $this->cache = new couchClient(getenv('COUCHDB_HOST'), 'cache');
 
     }
 
@@ -61,6 +63,11 @@ class CouchDB
         $obj = $this->arrayToObject($data);
         try {
             $response = $this->client->storeDoc($obj);
+
+            $obj_cache = $obj;
+            $obj_cache->_id = 'cached_val';
+            $this->cache->storeDoc($obj_cache);
+
             return $this->objectToArray($response);
         } catch (Exception $e) {
             return 'Error : ' . $e;
