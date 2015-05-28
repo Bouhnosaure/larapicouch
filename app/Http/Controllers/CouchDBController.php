@@ -118,4 +118,9 @@ class CouchDBController extends Controller
         return $couchDB->get_average_moisture();
     }
 
+    public function current(CouchDB $couchDB)
+    {
+        return $this->response->withCollection($couchDB->cache_all(), new ObjectTransformer());
+    }
+
 }

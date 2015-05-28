@@ -86,6 +86,18 @@ class CouchDB
         $this->cache->storeDoc($obj);
     }
 
+    public function cache_all()
+    {
+        $array = array();
+        $list = $this->cache->getAllDocs();
+
+        foreach ($list->rows as $doc) {
+            array_push($array, $this->get($doc->id));
+        }
+
+        return $array;
+    }
+
     public function update($id, array $data)
     {
         $doc = $this->objectToArray($this->get($id));
