@@ -77,7 +77,7 @@ class CouchDB
     {
 
         $data['_id'] = $data['ip'];
-        $data['_rev'] = str_random(30).rand(0,99);
+        $data['_rev'] = str_random(30);
 
         $obj = $this->arrayToObject($data);
 
