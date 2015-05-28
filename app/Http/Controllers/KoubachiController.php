@@ -60,18 +60,15 @@ class KoubachiController extends Controller
         return $this->response->withCollection($famNames, new FamilyNameTransformer());
     }
 
-    public function plant_by_id($id)
+    public function plant_by_id($id, CouchDB $couchDB)
     {
 
         $info = DB::table('plant_types')->where('id', '=', $id)->first();
         $photo = DB::table('plant_type_photos')->where('plantType_id', '=', $id)->first();
 
-        // RECUPERER INFO COUCHDB / CACHE
-        $current = null;
-        $value = Cache::get('data-temp');
-        if ($value != null) {
-            $current = $value;
-        }
+        $current = $couchDB->cache_all();
+
+
 
         return $this->response->withItem([$info, $photo, $current], new PlantTransformer());
     }
