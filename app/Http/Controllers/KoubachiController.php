@@ -67,9 +67,9 @@ class KoubachiController extends Controller
         $info = DB::table('plant_types')->where('id', '=', $id)->first();
         $photo = DB::table('plant_type_photos')->where('plantType_id', '=', $id)->first();
 
-        $current = $es->getAll()->first();
+        $current = $es->getAll()->toArray();
 
-
+        dd($current);
         $notification = array();
 
         // Checks for temperature, enlightment and moisture/humidity : Comparison between values from CouchDB and values required from plant Sqlite Database THEN Notif

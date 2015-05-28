@@ -53,7 +53,7 @@ class ElasticSearch
 
         $query = Query::create(new MatchAll());
         $query->setSize(1);
-        $query->setSort(array('datatime' => array('order' => 'desc', 'ignore_unmapped' => true)));
+        $query->setSort(array('datatime' => array('order' => 'asc', 'ignore_unmapped' => true)));
         $search = new Search($this->client);
 
         $this->result = $search->search($query);
@@ -67,7 +67,7 @@ class ElasticSearch
 
         $query = Query::create(new MatchAll());
         $query->setSize(100);
-        $query->setSort(array('datatime' => array('order' => 'desc', 'ignore_unmapped' => true)));
+        $query->setSort(array('datatime' => array('order' => 'asc', 'ignore_unmapped' => true)));
         $search = new Search($this->client);
 
         $this->result = $search->search($query);
