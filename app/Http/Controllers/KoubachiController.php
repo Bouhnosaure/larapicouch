@@ -69,21 +69,20 @@ class KoubachiController extends Controller
 
         $current = $es->getAll()->toArray();
 
-        dd($current);
         $notification = array();
 
         // Checks for temperature, enlightment and moisture/humidity : Comparison between values from CouchDB and values required from plant Sqlite Database THEN Notif
 
 
-        $tempStatus = $this->checkTemperature($this->extractTemp($info->hardiness), $current[0]->temperature, $this->extractTemp($info->genericInstructionTemperature));
+        $tempStatus = $this->checkTemperature($this->extractTemp($info->hardiness), $current['temperature'], $this->extractTemp($info->genericInstructionTemperature));
 
         array_push($notification, array("temperature" => $tempStatus));
 
-        $enlightStatus = $this->checkEnlightment($info->genericInstructionLight, $current[0]->brightness);
+        $enlightStatus = $this->checkEnlightment($info->genericInstructionLight, $current['brightness']);
 
         array_push($notification, array("enlightment" => $enlightStatus));
 
-        $humiStatus = $this->checkHumidity($info->genericInstructionWater, $current[0]->moisture);
+        $humiStatus = $this->checkHumidity($info->genericInstructionWater, $current['moisture']);
 
         array_push($notification, array("moisture" => $humiStatus));
 
@@ -123,7 +122,7 @@ class KoubachiController extends Controller
             return "low";
         }
 
-        else if(($genericInstruction == "Veillez à ce que le sol soit humide." && $actualMoisture > 50) || ($genericInstruction == "N’arroser que pendant les mois d’été." && $actualMoisture > 15) || ($genericInstruction == "Le sol ne devrait jamais complètement dessécher." && $actualMoisture > 30) || ($genericInstruction == "Le sol doit constamment être mouillé." && $actualMoisture > 120) || ($genericInstruction == "Le sol devrait être constamment très humide (presque mouillé)." && $actualMoisture > 90) || ($genericInstruction == "En été, le sol devrait être très humide (presque mouillé) pendant qu’en hiver, il devrait être simplement humide." && $actualMoisture > 50) || ($genericInstruction == "En été, le sol devrait être humide pendant qu’en hiver il ne devrait pas dessécher." && $actualMoisture > 50) || ($genericInstruction == "Veillez à ce que le sol soit humide." && $actualMoisture > 50) )
+        else if(($genericInstruction == "Veillez à ce que le sol soit humide." && $actualMoisture > 65) || ($genericInstruction == "N’arroser que pendant les mois d’été." && $actualMoisture > 15) || ($genericInstruction == "Le sol ne devrait jamais complètement dessécher." && $actualMoisture > 25) || ($genericInstruction == "Le sol doit constamment être mouillé." && $actualMoisture > 120) || ($genericInstruction == "Le sol devrait être constamment très humide (presque mouillé)." && $actualMoisture > 100) || ($genericInstruction == "En été, le sol devrait être très humide (presque mouillé) pendant qu’en hiver, il devrait être simplement humide." && $actualMoisture > 50) || ($genericInstruction == "En été, le sol devrait être humide pendant qu’en hiver il ne devrait pas dessécher." && $actualMoisture > 50) || ($genericInstruction == "Veillez à ce que le sol soit humide." && $actualMoisture > 50) )
         {
 
             return "high";
