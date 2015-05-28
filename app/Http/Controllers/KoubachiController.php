@@ -10,6 +10,7 @@ use App\Http\Transformers\FamilyNameTransformer;
 use App\Http\Transformers\ObjectTransformer;
 use App\Http\Transformers\ScientificNameTransformer;
 use App\Services\CouchDB;
+use App\Services\ElasticSearch;
 use EllipseSynergie\ApiResponse\Contracts\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -60,13 +61,14 @@ class KoubachiController extends Controller
         return $this->response->withCollection($famNames, new FamilyNameTransformer());
     }
 
-    public function plant_by_id($id, CouchDB $couchDB)
+    public function plant_by_id($id, ElasticSearch $es)
     {
 
         $info = DB::table('plant_types')->where('id', '=', $id)->first();
         $photo = DB::table('plant_type_photos')->where('plantType_id', '=', $id)->first();
 
-        $current = $couchDB->cache_all();
+        $current = $es->getAll()->first();
+
 
         $notification = array();
 

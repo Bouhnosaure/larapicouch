@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ad1455cd721a9871d1972567e6850613",
+    "hash": "e6eea64a0bd80370d9b3478af6d30a71",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -2016,6 +2016,64 @@
             "time": "2014-12-30 13:32:42"
         },
         {
+            "name": "ruflin/elastica",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ruflin/Elastica.git",
+                "reference": "1eee419d18e362b00a9f34093ef263547a7a6e6d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ruflin/Elastica/zipball/1eee419d18e362b00a9f34093ef263547a7a6e6d",
+                "reference": "1eee419d18e362b00a9f34093ef263547a7a6e6d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "psr/log": "~1.0"
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "5.3.*",
+                "munkie/elasticsearch-thrift-php": "1.4.*"
+            },
+            "suggest": {
+                "egeloen/http-adapter": "Allow using httpadapter transport",
+                "guzzlehttp/guzzle": "Allow using guzzle 5.3.x as the http transport (Requires php 5.4)",
+                "monolog/monolog": "Logging request",
+                "munkie/elasticsearch-thrift-php": "Allow using thrift transport"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Elastica\\": "lib/Elastica/",
+                    "Elastica\\Test\\": "test/lib/Elastica/Test/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Ruflin",
+                    "homepage": "http://ruflin.com/"
+                }
+            ],
+            "description": "Elasticsearch Client",
+            "homepage": "http://elastica.io/",
+            "keywords": [
+                "client",
+                "search"
+            ],
+            "time": "2015-05-26 14:56:59"
+        },
+        {
             "name": "sebastian/comparator",
             "version": "1.1.1",
             "source": {
@@ -3533,7 +3591,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "dready92/php-on-couch": 20
+        "dready92/php-on-couch": 20,
+        "ruflin/elastica": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
