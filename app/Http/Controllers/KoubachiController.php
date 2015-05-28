@@ -89,8 +89,13 @@ class KoubachiController extends Controller
         return $this->response->withItem([$info, $photo, $current, $notification], new PlantTransformer());
     }
 
-    public function  getDevicesIp(){
-        
+    public function device_list(ElasticSearch $elasticSearch)
+    {
+
+        $result = $elasticSearch->getAllIp()->toArray('agg');
+
+        return $this->response->withItem($result, new ObjectTransformer());
+
     }
 
     public function plant_list()
@@ -101,41 +106,25 @@ class KoubachiController extends Controller
 
             $photo = DB::table('plant_type_photos')->select('dataUrl')->where('plantType_id', '=', $info->id)->first();
             $infos[$key]->photo = $photo;
-
         }
-
 
         return $this->response->withPaginator($infos, new PlantListTransformer());
 
     }
 
-    public function device_list(ElasticSearch $es)
-    {
-
-        dd($es->getAllIp()->toArray("agg"));
-
-    }
-
-
     //Check moisture reference attribute çf transformed object by comparying to CouchDB cache mesure
 
-    public function checkHumidity($genericInstruction, $actualMoisture){
+    public function checkHumidity($genericInstruction, $actualMoisture)
+    {
 
 
-        if(($genericInstruction == "Veillez à ce que le sol soit humide." && $actualMoisture < 30) || ($genericInstruction == "N’arroser que pendant les mois d’été." && $actualMoisture < 0) || ($genericInstruction == "Le sol ne devrait jamais complètement dessécher." && $actualMoisture < 15) || ($genericInstruction == "Le sol doit constamment être mouillé." && $actualMoisture < 85) || ($genericInstruction == "Le sol devrait être constamment très humide (presque mouillé)." && $actualMoisture < 70) || ($genericInstruction == "En été, le sol devrait être très humide (presque mouillé) pendant qu’en hiver, il devrait être simplement humide." && $actualMoisture < 35) || ($genericInstruction == "En été, le sol devrait être humide pendant qu’en hiver il ne devrait pas dessécher." && $actualMoisture < 30) || ($genericInstruction == "Veillez à ce que le sol soit humide." && $actualMoisture < 35) )
-        {
+        if (($genericInstruction == "Veillez à ce que le sol soit humide." && $actualMoisture < 30) || ($genericInstruction == "N’arroser que pendant les mois d’été." && $actualMoisture < 0) || ($genericInstruction == "Le sol ne devrait jamais complètement dessécher." && $actualMoisture < 15) || ($genericInstruction == "Le sol doit constamment être mouillé." && $actualMoisture < 85) || ($genericInstruction == "Le sol devrait être constamment très humide (presque mouillé)." && $actualMoisture < 70) || ($genericInstruction == "En été, le sol devrait être très humide (presque mouillé) pendant qu’en hiver, il devrait être simplement humide." && $actualMoisture < 35) || ($genericInstruction == "En été, le sol devrait être humide pendant qu’en hiver il ne devrait pas dessécher." && $actualMoisture < 30) || ($genericInstruction == "Veillez à ce que le sol soit humide." && $actualMoisture < 35)) {
 
             return "low";
-        }
-
-        else if(($genericInstruction == "Veillez à ce que le sol soit humide." && $actualMoisture > 65) || ($genericInstruction == "N’arroser que pendant les mois d’été." && $actualMoisture > 15) || ($genericInstruction == "Le sol ne devrait jamais complètement dessécher." && $actualMoisture > 25) || ($genericInstruction == "Le sol doit constamment être mouillé." && $actualMoisture > 120) || ($genericInstruction == "Le sol devrait être constamment très humide (presque mouillé)." && $actualMoisture > 100) || ($genericInstruction == "En été, le sol devrait être très humide (presque mouillé) pendant qu’en hiver, il devrait être simplement humide." && $actualMoisture > 50) || ($genericInstruction == "En été, le sol devrait être humide pendant qu’en hiver il ne devrait pas dessécher." && $actualMoisture > 50) || ($genericInstruction == "Veillez à ce que le sol soit humide." && $actualMoisture > 50) )
-        {
+        } else if (($genericInstruction == "Veillez à ce que le sol soit humide." && $actualMoisture > 65) || ($genericInstruction == "N’arroser que pendant les mois d’été." && $actualMoisture > 15) || ($genericInstruction == "Le sol ne devrait jamais complètement dessécher." && $actualMoisture > 25) || ($genericInstruction == "Le sol doit constamment être mouillé." && $actualMoisture > 120) || ($genericInstruction == "Le sol devrait être constamment très humide (presque mouillé)." && $actualMoisture > 100) || ($genericInstruction == "En été, le sol devrait être très humide (presque mouillé) pendant qu’en hiver, il devrait être simplement humide." && $actualMoisture > 50) || ($genericInstruction == "En été, le sol devrait être humide pendant qu’en hiver il ne devrait pas dessécher." && $actualMoisture > 50) || ($genericInstruction == "Veillez à ce que le sol soit humide." && $actualMoisture > 50)) {
 
             return "high";
-        }
-
-        else
-        {
+        } else {
             return "ok";
         }
 
@@ -143,22 +132,16 @@ class KoubachiController extends Controller
 
     //Check enlightment reference attribute çf transformed object by comparying to CouchDB cache mesure
 
-    public function checkEnlightment($genericInstruction, $actualEnlightment) {
+    public function checkEnlightment($genericInstruction, $actualEnlightment)
+    {
 
 
-        if(($genericInstruction == "Préfère le soleil direct." && $actualEnlightment < 50000) || ($genericInstruction == "Préfère des endroits lumineux sans soleil direct." && $actualEnlightment < 25000 ) || ($genericInstruction == "Préfère des endroits mi-ombragés." && $actualEnlightment < 1000) || ($genericInstruction == "Préfère des endroits ombragés." && $actualEnlightment < 100))
-        {
+        if (($genericInstruction == "Préfère le soleil direct." && $actualEnlightment < 50000) || ($genericInstruction == "Préfère des endroits lumineux sans soleil direct." && $actualEnlightment < 25000) || ($genericInstruction == "Préfère des endroits mi-ombragés." && $actualEnlightment < 1000) || ($genericInstruction == "Préfère des endroits ombragés." && $actualEnlightment < 100)) {
 
-           return "low";
-        }
-
-        else if (($genericInstruction == "Préfère le soleil direct." && $actualEnlightment > 100000) || ($genericInstruction == "Préfère des endroits lumineux sans soleil direct." && $actualEnlightment > 30000 ) || ($genericInstruction == "Préfère des endroits mi-ombragés." && $actualEnlightment > 5000) || ($genericInstruction == "Préfère des endroits ombragés." && $actualEnlightment > 400))
-        {
+            return "low";
+        } else if (($genericInstruction == "Préfère le soleil direct." && $actualEnlightment > 100000) || ($genericInstruction == "Préfère des endroits lumineux sans soleil direct." && $actualEnlightment > 30000) || ($genericInstruction == "Préfère des endroits mi-ombragés." && $actualEnlightment > 5000) || ($genericInstruction == "Préfère des endroits ombragés." && $actualEnlightment > 400)) {
             return "high";
-        }
-
-        else
-        {
+        } else {
             return "ok";
         }
 
@@ -170,19 +153,12 @@ class KoubachiController extends Controller
     public function checkTemperature($hardiness, $averageTemp, $actualTemp)
     {
 
-        if($hardiness > $actualTemp)
-        {
+        if ($hardiness > $actualTemp) {
 
             return "low";
-        }
-
-        else if ($actualTemp >= $averageTemp + 15 )
-        {
+        } else if ($actualTemp >= $averageTemp + 15) {
             return "high";
-        }
-
-        else
-        {
+        } else {
             return "ok";
         }
     }
