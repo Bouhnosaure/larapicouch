@@ -121,9 +121,13 @@ class ElasticSearch
             $query = '{query:{"term" : { "ip" : "' . $device['key'] . '" }},"size": 1,"from": 0, "sort": {"datetime": {"order": "desc"}}}';
             $response = $this->client->request($this->path_search, Request::GET, $query);
             $data = $response->getData();
+            $data = head($data['hits']['hits']);
+            $data = $data['_source'];
 
             Carbon::setLocale('fr');
-            $temp[] = array('ip' => $data['hits']['hits'][0]['_source']['ip'], 'updated' => Carbon::parse($data['hits']['hits'][0]['_source']['datetime'])->subHours(2)->diffForHumans());
+            if ($data['ip'] != null) {
+                $temp[] = array('ip' => $data['ip'], 'updated' => Carbon::parse($data['datetime'])->subHours(2)->diffForHumans());
+            }
         }
 
         $this->result = $temp;
