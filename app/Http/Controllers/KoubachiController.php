@@ -67,6 +67,9 @@ class KoubachiController extends Controller
         $info = DB::table('plant_types')->where('id', '=', $id)->first();
         $photo = DB::table('plant_type_photos')->where('plantType_id', '=', $id)->first();
 
+        $name = explode("/", $photo->dataUrl);
+        $photo->dataUrl = 'img/flowers/'.last($name);
+
         $current = $es->getLast()->oneToArray();
 
         $notification = array();
@@ -100,15 +103,19 @@ class KoubachiController extends Controller
 
     public function plant_list()
     {
-        $infos = DB::table('plant_types')->orderBy('commonName','asc')->paginate('50');
+        $infos = DB::table('plant_types')->get();
 
         foreach ($infos as $key => $info) {
 
             $photo = DB::table('plant_type_photos')->select('dataUrl')->where('plantType_id', '=', $info->id)->first();
+
+            $name = explode("/", $photo->dataUrl);
+            $photo->dataUrl = 'img/flowers/'.last($name);
             $infos[$key]->photo = $photo;
+
         }
 
-        return $this->response->withPaginator($infos, new PlantListTransformer());
+        return $this->response->withCollection($infos, new PlantListTransformer());
 
     }
 
