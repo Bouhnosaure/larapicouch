@@ -100,7 +100,7 @@ class KoubachiController extends Controller
 
     public function plant_list()
     {
-        $infos = DB::table('plant_types')->get();
+        $infos = DB::table('plant_types')->orderBy('commonName','asc')->get();
 
         foreach ($infos as $key => $info) {
 
