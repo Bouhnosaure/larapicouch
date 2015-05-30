@@ -106,6 +106,7 @@ class ElasticSearch
     {
         $agg = new Terms("terms");
         $agg->setField("ip");
+        $agg->setField("datetime");
 
         $query = Query::create(new MatchAll());
         $query->addAggregation($agg);
