@@ -22,9 +22,9 @@ class LocalDataRequest extends Request {
 	public function rules()
 	{
 		return [
-			'alias' => 'alpha_dash',
+			'alias' => 'string',
 			'ip' => 'ip',
-            'plant_id' => 'string'
+            'plant_id' => 'integer'
 		];
 	}
 
