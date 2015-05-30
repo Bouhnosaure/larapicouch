@@ -109,17 +109,20 @@ class ElasticSearch
 
         $query = Query::create(new MatchAll());
         $query->addAggregation($agg);
+
         $search = new Search($this->client);
 
         $this->result = $search->search($query)->getAggregation("terms");
         $this->result = $this->result['buckets'];
 
         $temp = [];
+
         foreach ($this->result as $device) {
             $query = '{query:{"term" : { "ip" : "' . $device['key'] . '" }},"size": 1,"from": 0, "sort": {"datetime": {"order": "desc"}}}';
             $response = $this->client->request($this->path_search, Request::GET, $query);
             $data = $response->getData();
 
+            Carbon::setLocale('fr');
             $temp[] = array('ip' => $data['hits']['hits'][0]['_source']['ip'], 'updated' => Carbon::parse($data['hits']['hits'][0]['_source']['datetime'])->subHours(2)->diffForHumans());
         }
 
