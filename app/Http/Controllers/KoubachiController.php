@@ -68,7 +68,8 @@ class KoubachiController extends Controller
         $photo = DB::table('plant_type_photos')->where('plantType_id', '=', $id)->first();
 
         $name = explode("/", $photo->dataUrl);
-        $photo->dataUrl = 'img/flowers/'.last($name);
+        $name = explode(".", last($name));
+        $photo->dataUrl = 'img/flowers/'.head($name).'.jpg';
 
         $current = $es->getLast()->oneToArray();
 
@@ -110,7 +111,8 @@ class KoubachiController extends Controller
             $photo = DB::table('plant_type_photos')->select('dataUrl')->where('plantType_id', '=', $info->id)->first();
 
             $name = explode("/", $photo->dataUrl);
-            $photo->dataUrl = 'img/flowers/'.last($name);
+            $name = explode(".", last($name));
+            $photo->dataUrl = 'img/flowers/'.head($name).'.jpg';
             $infos[$key]->photo = $photo;
 
         }
