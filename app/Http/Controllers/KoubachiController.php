@@ -104,7 +104,7 @@ class KoubachiController extends Controller
 
     public function plant_list()
     {
-        $infos = DB::table('plant_types')->orderBy('commonName','asc')->paginate(50);
+        $infos = DB::table('plant_types')->orderBy('commonName','asc')->get();
 
         foreach ($infos as $key => $info) {
 
@@ -117,7 +117,7 @@ class KoubachiController extends Controller
 
         }
 
-        return $this->response->withPaginator($infos, new PlantListTransformer());
+        return $this->response->withCollection($infos, new PlantListTransformer());
 
     }
 
