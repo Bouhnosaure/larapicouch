@@ -23,7 +23,7 @@ class LocalDataRequest extends Request {
 	{
 		return [
 			'alias' => 'alpha_dash',
-			'ip' => 'alpha_dash',
+			'ip' => 'ip',
             'plant_id' => 'alpha_dash'
 		];
 	}
