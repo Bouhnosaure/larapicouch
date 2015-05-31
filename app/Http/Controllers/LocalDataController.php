@@ -63,6 +63,8 @@ class LocalDataController extends Controller
     {
         $data = DB::connection('sqlite_app')->table('local_data')->where('id', '=', $id)->get();
 
+        dd($data);
+
         $data['info'] = DB::table('plant_types')->where('id', '=', $data['plant_id'])->first();
         $photo = DB::table('plant_type_photos')->where('plantType_id', '=', $data['plant_id'])->first();
 
