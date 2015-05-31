@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 
 use App\Http\Requests\LocalDataRequest;
 use App\Http\Transformers\ObjectTransformer;
+use App\Http\Transformers\PlantLocalTransformer;
 use App\Http\Transformers\PlantTransformer;
 use App\Services\ElasticSearch;
 use Carbon\Carbon;
@@ -103,7 +104,7 @@ class LocalDataController extends Controller
         array_push($notification, array("moisture" => $humiStatus));
 
 
-        return $this->response->withItem([$info, $photo, $current, $notification], new PlantTransformer());
+        return $this->response->withItem([$info, $photo, $current, $notification], new PlantLocalTransformer());
     }
 
 
