@@ -62,6 +62,15 @@ class LocalDataController extends Controller
     public function show($id)
     {
         $data = DB::connection('sqlite_app')->table('local_data')->where('id', '=', $id)->get();
+
+        $data['info'] = DB::table('plant_types')->where('id', '=', $data['plant_id'])->first();
+        $photo = DB::table('plant_type_photos')->where('plantType_id', '=', $data['plant_id'])->first();
+
+        $name = explode("/", $photo->dataUrl);
+        $name = explode(".", last($name));
+        $photo->dataUrl = 'img/flowers/' . head($name) . '.jpg';
+        $data['photo'] = $photo;
+
         return $this->response->withItem($data, new ObjectTransformer());
     }
 
