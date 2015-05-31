@@ -64,6 +64,16 @@ class ElasticSearch
         return $this;
     }
 
+    public function getLastByIp($ip)
+    {
+        $query = '{query:{"term" : { "ip" : "' . $ip . '" }},"from": 0,"size": 1,"sort": {"datetime": {"order": "desc"}}}';
+        $response = $this->client->request($this->path_search, Request::GET, $query);
+        $data = $response->getData();
+        $this->result = $data['hits']['hits'];
+
+        return $this;
+    }
+
     public function getAll()
     {
         $query = '{"from": 0,"size": 50,"sort": {"datetime": {"order": "desc"}}}';
