@@ -37,6 +37,15 @@ class LocalDataController extends Controller
     public function index()
     {
         $data = DB::connection('sqlite_app')->table('local_data')->get();
+
+        foreach ($data as $key => $flower) {
+            $photo = DB::table('plant_type_photos')->where('plantType_id', '=', $flower->plant_id)->first();
+            $name = explode("/", $photo->dataUrl);
+            $name = explode(".", last($name));
+            $photo->dataUrl = 'img/flowers/' . head($name) . '.jpg';
+            $data[$key]->photo = $photo;
+        }
+
         return $this->response->withCollection($data, new ObjectTransformer());
     }
 
