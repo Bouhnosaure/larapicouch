@@ -143,12 +143,12 @@ class LocalDataController extends Controller
 
         if (($genericInstruction == "Veillez à ce que le sol soit humide." && $actualMoisture < 30) || ($genericInstruction == "N’arroser que pendant les mois d’été." && $actualMoisture < 0) || ($genericInstruction == "Le sol ne devrait jamais complètement dessécher." && $actualMoisture < 15) || ($genericInstruction == "Le sol doit constamment être mouillé." && $actualMoisture < 85) || ($genericInstruction == "Le sol devrait être constamment très humide (presque mouillé)." && $actualMoisture < 70) || ($genericInstruction == "En été, le sol devrait être très humide (presque mouillé) pendant qu’en hiver, il devrait être simplement humide." && $actualMoisture < 35) || ($genericInstruction == "En été, le sol devrait être humide pendant qu’en hiver il ne devrait pas dessécher." && $actualMoisture < 30) || ($genericInstruction == "Veillez à ce que le sol soit humide." && $actualMoisture < 35)) {
 
-            return "low";
+            return array("assertive", "Pensez à arroser votre plante");
         } else if (($genericInstruction == "Veillez à ce que le sol soit humide." && $actualMoisture > 65) || ($genericInstruction == "N’arroser que pendant les mois d’été." && $actualMoisture > 15) || ($genericInstruction == "Le sol ne devrait jamais complètement dessécher." && $actualMoisture > 25) || ($genericInstruction == "Le sol doit constamment être mouillé." && $actualMoisture > 120) || ($genericInstruction == "Le sol devrait être constamment très humide (presque mouillé)." && $actualMoisture > 100) || ($genericInstruction == "En été, le sol devrait être très humide (presque mouillé) pendant qu’en hiver, il devrait être simplement humide." && $actualMoisture > 50) || ($genericInstruction == "En été, le sol devrait être humide pendant qu’en hiver il ne devrait pas dessécher." && $actualMoisture > 50) || ($genericInstruction == "Veillez à ce que le sol soit humide." && $actualMoisture > 50)) {
 
-            return "high";
+            return array("assertive", "Evitez de trop arroser votre plante !");
         } else {
-            return "ok";
+            return array("balanced", "Votre plante est bien arrosée");
         }
 
     }
@@ -161,11 +161,11 @@ class LocalDataController extends Controller
 
         if (($genericInstruction == "Préfère le soleil direct." && $actualEnlightment < 50000) || ($genericInstruction == "Préfère des endroits lumineux sans soleil direct." && $actualEnlightment < 25000) || ($genericInstruction == "Préfère des endroits mi-ombragés." && $actualEnlightment < 1000) || ($genericInstruction == "Préfère des endroits ombragés." && $actualEnlightment < 100)) {
 
-            return "low";
+            return array("assertive", "Mettez votre plante au soleil");
         } else if (($genericInstruction == "Préfère le soleil direct." && $actualEnlightment > 100000) || ($genericInstruction == "Préfère des endroits lumineux sans soleil direct." && $actualEnlightment > 30000) || ($genericInstruction == "Préfère des endroits mi-ombragés." && $actualEnlightment > 5000) || ($genericInstruction == "Préfère des endroits ombragés." && $actualEnlightment > 400)) {
-            return "high";
+            return array("assertive", "Il y a trop de lumière, mettre votre plante a l'ombre");
         } else {
-            return "ok";
+            return array("balanced", "Votre plante est correctement exposée");
         }
 
 
@@ -178,11 +178,11 @@ class LocalDataController extends Controller
 
         if ($hardiness > $actualTemp) {
 
-            return "low";
+            return array("assertive", "Rentrez votre plante, il fait trop froid pour elle");
         } else if ($actualTemp >= $averageTemp + 15) {
-            return "high";
+            return array("assertive", "Votre plante a trop chaud");
         } else {
-            return "ok";
+            return array("balanced", "La temperature est correcte pour votre plante");
         }
     }
 
