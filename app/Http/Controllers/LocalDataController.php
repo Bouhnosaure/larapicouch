@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 
 use App\Http\Requests\LocalDataRequest;
 use App\Http\Transformers\ObjectTransformer;
+use App\Http\Transformers\PlantLocalTransformer;
 use App\Http\Transformers\PlantTransformer;
 use App\Services\ElasticSearch;
 use Carbon\Carbon;
@@ -76,6 +77,7 @@ class LocalDataController extends Controller
         $data = DB::connection('sqlite_app')->table('local_data')->where('id', '=', $id)->first();
 
         $info = DB::table('plant_types')->where('id', '=', $data->plant_id)->first();
+
         $photo = DB::table('plant_type_photos')->where('plantType_id', '=', $data->plant_id)->first();
 
         $name = explode("/", $photo->dataUrl);
@@ -101,7 +103,7 @@ class LocalDataController extends Controller
         array_push($notification, array("moisture" => $humiStatus));
 
 
-        return $this->response->withItem([$info, $photo, $current, $notification], new PlantTransformer());
+        return $this->response->withItem([$data, $info, $photo, $current, $notification], new PlantLocalTransformer());
     }
 
 
