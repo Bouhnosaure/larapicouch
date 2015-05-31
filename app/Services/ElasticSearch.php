@@ -71,6 +71,10 @@ class ElasticSearch
         $data = $response->getData();
         $this->result = $data['hits']['hits'];
 
+
+        Carbon::setLocale('fr');
+        $this->result[0]['_source']['updated'] = Carbon::parse($this->result[0]['_source']['datetime'])->subHours(2)->diffForHumans();
+
         return $this;
     }
 
